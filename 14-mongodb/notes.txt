@@ -1,0 +1,142 @@
+Oracle                 Mongo DB
+--------------------------------
+-> SQL database		-> NoSQL Database
+-> Database         -> Database
+-> Tables           -> Collection
+-> Rows             -> Documents
+-> Columns          -> Fields
+
+Operations (CRUD)
+-----------
+-> C -> CREATE
+-> R -> READ
+-> U -> UPDATE
+-> D -> DELETE
+
+How many ways we can do CRUD with MongoDB
+-----------------------------------------
+1) CMD (DBA)
+2) Standalone (Unit-Testing)
+3) Website (Developer)
+
+Two installs of MongoDB
+-----------------------
+1) Local MongoDB (installed in your system) (mongodb://127.0.0.1:27017)
+2) Cloud MongoDB (configure in Google / Online)
+
+
+Database Checks
+--------------------------
+1) Database is installed in your system or not
+
+	Solution :  C:\Program Files\MongoDB\Server\4.2\bin
+
+2) 'mongo' is not recognized as an internal or external command
+
+	Solution : Setup the environment variables
+
+3) exception: connect failed
+
+	Solution : Windows + R (Run Command) -> type "services.msc" -> Start "MongoDB" service
+
+
+-------------------------------------------------------------------------
+						CRUD Operations with CMD
+-------------------------------------------------------------------------
+-> to check the available databases -> "show dbs"
+-> Create new Database / Switch to any database -> use <name>
+	ex: use "employee-portal"
+-> Create a Table / Collection -> db.createCollection('employees');
+-> to check the available Tables -> "show collections"
+
+INSERT (CREATE Operation)
+------------
+db.employees.insertOne({
+	name : 'Rajan',
+	age : 25,
+	designation : 'Software Engineer',
+	isActive : true
+});
+
+db.employees.insertOne({
+	name : 'Mahesh',
+	age : 28,
+	designation : 'Tech Lead',
+	isActive : false
+});
+
+db.employees.insertMany([
+	{
+		name : 'John',
+		age : 35,
+		designation : 'Manager',
+		isActive : true
+	},
+	{
+		name : 'Wilson',
+		age : 45,
+		designation : 'Sr.Manager',
+		isActive : false
+	}
+]);
+
+READ
+--------------
+db.employees.find();
+db.employees.find().pretty();
+db.employees.find({ name : 'John'}).pretty();
+db.employees.find({ _id : ObjectId("5f4f00caf4646a00e2d2cf0d")}).pretty();
+
+UPDATE
+-----------
+db.employees.updateOne({name : 'Rajan'} , {
+	$set : {
+		age : 28,
+		designation : 'Sr. Software Engineer'
+	}
+});
+
+db.employees.updateOne({name : 'Wilson'} , {
+	$set : {
+		age : 48,
+		designation : 'Director'
+	}
+});
+
+DELETE
+---------
+db.employees.deleteOne({name : 'Rajan'});
+db.employees.deleteOne({_id : ObjectId("5f4f00caf4646a00e2d2cf0d")});
+
+NOTE:
+-----
+-> MongoDB Compass (GUI)
+
+-----------------------------------------------------
+2) Cloud MongoDB (configure in Google / Online)
+-------------------------------------------- ---------
+Step 1) Login / Signup to "MongoDB Atlas" -> https://www.mongodb.com/cloud/atlas
+
+Step 2) Create a Project
+
+Step 3) Create a Cluster
+
+Step 4) Create Database Access / User
+
+Step 5) Setup the Network Access
+
+CMD
+----
+
+
+Compass
+-------
+
+
+
+
+
+
+
+
+
